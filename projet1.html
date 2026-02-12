@@ -1,16 +1,20 @@
-<!doctype html>
+﻿<!doctype html>
 <!--
 	Phantom by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="fr">
   <head>
-    <title>Hackathon - Restauration Scolaire</title>
+    <title>Projet Hackathon | Gabriel Autret</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Projet Hackathon de Gabriel Autret : application Laravel avec carte interactive et données OpenDataSoft pour la restauration scolaire."
     />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript
@@ -18,7 +22,7 @@
     /></noscript>
     <link rel="icon" href="images/favicon.png" type="image/png" />
   </head>
-  <body class="is-preload">
+  <body class="is-preload dark-mode">
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Header -->
@@ -42,93 +46,79 @@
       <!-- Menu -->
       <nav id="menu">
         <h2>Menu</h2>
-
-        <!-- Toggle positionné proprement -->
-        <div class="dark-mode-toggle-container">
-          <label class="switch">
-            <input type="checkbox" id="darkModeToggle" />
-            <span class="slider round"></span>
-          </label>
-        </div>
-        <ul>
+<ul>
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="images/CV Gabriel Autret.pdf">Mon cv</a></li>
+          <li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
           <li><a href="skills.html">Mes compétences</a></li>
           <li><a href="#footer">Mes contacts</a></li>
         </ul>
       </nav>
 
       <!-- Main -->
-      <div id="main">
+      <main id="main">
         <div class="inner">
-          <h1>Restauration Scolaire des écoles d'Angers</h1>
+          <h1>Hackathon - Restauration scolaire des écoles d'Angers</h1>
           <span class="image main"
             ><img
               src="images/hackathon_accueil.png"
-              alt="Capture de FlashIdentif"
+              alt="Capture de l'application du hackathon restauration scolaire"
+              width="1896"
+              height="945"
+              decoding="async"
           /></span>
 
+          <h2>Contexte</h2>
           <p>
-            L'Hackathon pour ce projet à été réalisé en 15h avec un contexte
-            donné qui avait pour but de nous entraîner sur l'utilisation d'API
-            opensources.
+            Ce projet a été réalisé pendant un hackathon de 15 heures, avec un sujet
+            attribué au hasard parmi cinq propositions. L'objectif était de livrer une
+            application fonctionnelle dans un temps court, puis de la présenter en vidéo.
           </p>
 
-          <p>
-            L'Hackathon avait 5 sujets d'Hackathon différents, le sujet était
-            donné au hasard, nous étions ensuite en rivalité avec jusqu'à 3
-            autres élèves. Le but était donc de rendre la meilleure application
-            possible en 15h, avec une présentation vidéo de 5 minutes à la fin
-            de l'Hackathon.
-          </p>
-
-          <p>Le projet à pour but :</p>
+          <h2>Fonctionnalités réalisées</h2>
           <ul>
-            <li>
-              De lister les écoles d'Angers sur une carte interactive avec les
-              données de l'API OpenDataSoft.
-            </li>
-            <li>
-              Accès au menu de la cantine de chaque école grâce à l'API
-              OpenDataSoft.
-            </li>
-            <li>
-              Inscription des élèves sur une école pour savoir à quelle école
-              ils sont rattachés et, connaître le menu de la cantine de leur
-              école.
-                <li>Système de connexion pour les parents.</li>
-            </li>
-			<br>
-              Développement avec laravel et utilisation leaflet pour la carte interactive.
+            <li>Affichage des écoles d'Angers sur une carte interactive.</li>
+            <li>Consultation des menus de cantine grâce aux données OpenDataSoft.</li>
+            <li>Inscription des élèves à une école pour personnaliser les informations.</li>
+            <li>Mise en place d'un système de connexion pour les parents.</li>
           </ul>
 
+          <h2>Stack technique</h2>
+          <ul>
+            <li>Laravel pour le back-end.</li>
+            <li>JavaScript et Leaflet pour la carte interactive.</li>
+            <li>APIs OpenDataSoft pour les données publiques.</li>
+          </ul>
+
+          <h2>Résultats et apprentissages</h2>
           <p>
-            Ce projet m’a permis de consolider mes connaissance en laravel, en
-            manipulation d'APIs et, en utilisant des librairies javaScript (leaflet).
+            Ce hackathon m'a permis de consolider mes bases sur Laravel, la consommation
+            d'API et l'intégration de bibliothèques JavaScript. J'y ai aussi renforcé
+            ma capacité à prioriser et livrer rapidement en contexte contraint.
           </p>
         </div>
-      </div>
+      </main>
       <!-- Footer -->
 
       <footer id="footer">
         <div class="inner">
           <section>
             <h2>Contactez-moi</h2>
-            <form method="post" action="#">
-              <div class="fields">
-                <div class="field half">
-                  <p><strong>autret.gabriel@gmail.com</strong></p>
-                </div>
-              </div>
-            </form>
+            <p>Disponible pour échanger sur mes projets, un stage ou une alternance.</p>
+            <ul class="actions">
+              <li><a href="mailto:autret.gabriel@gmail.com" class="button primary">M'envoyer un email</a></li>
+              <li><a href="images/CV Gabriel Autret.pdf" class="button" target="_blank" rel="noopener noreferrer">Voir mon CV (PDF)</a></li>
+            </ul>
           </section>
           <section>
-            <h2>Follow</h2>
+            <h2>Suivez-moi</h2>
             <ul class="icons">
               <li>
                 <a
                   href="https://x.com/JxstGabi"
                   class="icon brands style2 fa-twitter"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter"
                   ><span class="label">Twitter</span></a
                 >
               </li>
@@ -136,6 +126,9 @@
                 <a
                   href="https://www.linkedin.com/in/gabriel-autret-93a664304/"
                   class="icon brands style2 fa-linkedin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                   ><span class="label">LinkedIn</span></a
                 >
               </li>
@@ -143,14 +136,17 @@
                 <a
                   href="https://github.com/JxstGabi"
                   class="icon brands style2 fa-github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
                   ><span class="label">GitHub</span></a
                 >
               </li>
             </ul>
           </section>
           <ul class="copyright">
-            <li>&copy; 2025 Gabriel Autret. Tous droits réservés</li>
-            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <li>&copy; 2026 Gabriel Autret. Tous droits réservés</li>
+            <li>Design: <a href="https://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a></li>
           </ul>
         </div>
       </footer>
@@ -164,3 +160,4 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+

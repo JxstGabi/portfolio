@@ -1,16 +1,20 @@
-<!doctype html>
+﻿<!doctype html>
 <!--
 	Phantom by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="fr">
   <head>
-    <title>Projet - CaleSons</title>
+    <title>Projet CaleSons | Gabriel Autret</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Projet CaleSons de Gabriel Autret : développement d'un back-office C# dans un projet agile multi-applications (web Laravel et mobile Flutter)."
     />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript
@@ -18,7 +22,7 @@
     /></noscript>
     <link rel="icon" href="images/favicon.png" type="image/png" />
   </head>
-  <body class="is-preload">
+  <body class="is-preload dark-mode">
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Header -->
@@ -42,89 +46,85 @@
       <!-- Menu -->
       <nav id="menu">
         <h2>Menu</h2>
-
-        <!-- Toggle positionné proprement -->
-        <div class="dark-mode-toggle-container">
-          <label class="switch">
-            <input type="checkbox" id="darkModeToggle" />
-            <span class="slider round"></span>
-          </label>
-        </div>
-        <ul>
+<ul>
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="images/CV Gabriel Autret.pdf">Mon cv</a></li>
+          <li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
           <li><a href="skills.html">Mes compétences</a></li>
           <li><a href="#footer">Mes contacts</a></li>
         </ul>
       </nav>
 
       <!-- Main -->
-      <div id="main">
+      <main id="main">
         <div class="inner">
-          <h1>Projet d'atelier de profesionnalisation - CaleSons (application C#)</h1>
+          <h1>CaleSons - Atelier de professionnalisation (application C#)</h1>
           <span class="image main"
             ><img
               src="images/dashboard.png"
-              alt="Capture de FlashIdentif"
+              alt="Tableau de bord back-office du projet CaleSons"
+              width="1918"
+              height="1098"
+              decoding="async"
           /></span>
 
+          <h2>Contexte</h2>
           <p>
-            CaleSons est le dernier projet réalisé durant ma deuxième année de BTS SIO.
-            L'objectif était de réaliser 3 applications pour gérer des évènements et la gestion
-            des utilisateurs.
-          <p>
-            Ce projet à été réalisé en équipe de 4 avec une méthode agile (SCRUM) en 9 semaines.
-            L'application C# avait pour but de gérer le backoffice.
+            CaleSons est un projet réalisé durant ma deuxième année de BTS SIO.
+            Le travail a été mené en équipe de 4 pendant 9 semaines avec une
+            organisation agile (SCRUM).
           </p>
 
-          <p>L'application peut :</p>
+          <h2>Périmètre du projet</h2>
           <ul>
-            <li>
-              Gérer les évènements, les utilisateurs, les lieux et les sponsors (en CRUD).
-            </li>
-            <li>
-              Consulter les statistiques d'un évènement (nombre de place réservées, taux de remplissage, etc),
-              les statistiques des utilisateurs (nombre d'évènements réservés, etc) et,
-              les statistiques des sponsors (nombre d'évènements sponsorisés, etc).
-
-            </li>
-            <li>
-              Consulter les mails envoyé aux administrateurs directement depuis l'application et,
-              l'envoie de mail pour un utilisateur précis ou pour un groupe d'utilisateurs
-              (ex: tous les utilisateurs ayant réservé pour l'évènement X).
-              Il permet aussi d'utiliser des modèles de mail (avec possibilité d'en créer/modifier)
-              pour un envoie plus rapide.
-            </li>
-			<br>
-              L'application est développée en C# avec le framework .NET et utilise une base de données MySQL pour stocker les données.
+            <li>Application C# pour le back-office administrateur.</li>
+            <li>Application web Laravel pour les fonctionnalités utilisateur.</li>
+            <li>Application mobile Flutter pour consulter et suivre les réservations.</li>
           </ul>
 
+          <h2>Fonctionnalités de l'application C#</h2>
+          <ul>
+            <li>Gestion en CRUD des événements, utilisateurs, lieux et sponsors.</li>
+            <li>Suivi des statistiques (taux de remplissage, réservations, sponsors).</li>
+            <li>Gestion des emails avec modèles, envoi ciblé ou en masse.</li>
+          </ul>
+
+          <h2>Stack technique</h2>
+          <ul>
+            <li>C# et .NET pour l'application back-office.</li>
+            <li>MySQL pour le stockage des données.</li>
+            <li>APIs web pour la communication entre les applications.</li>
+          </ul>
+
+          <h2>Résultats et apprentissages</h2>
           <p>
-            Ce projet m’a permis de consolider mes connaissance en C#.
+            Ce projet m'a permis de consolider mes compétences en C#, de travailler
+            dans une architecture multi-applications et de vivre une première
+            expérience concrète de développement en méthode agile.
           </p>
         </div>
-      </div>
+      </main>
       <!-- Footer -->
 
       <footer id="footer">
         <div class="inner">
           <section>
             <h2>Contactez-moi</h2>
-            <form method="post" action="#">
-              <div class="fields">
-                <div class="field half">
-                  <p><strong>autret.gabriel@gmail.com</strong></p>
-                </div>
-              </div>
-            </form>
+            <p>Disponible pour échanger sur mes projets, un stage ou une alternance.</p>
+            <ul class="actions">
+              <li><a href="mailto:autret.gabriel@gmail.com" class="button primary">M'envoyer un email</a></li>
+              <li><a href="images/CV Gabriel Autret.pdf" class="button" target="_blank" rel="noopener noreferrer">Voir mon CV (PDF)</a></li>
+            </ul>
           </section>
           <section>
-            <h2>Follow</h2>
+            <h2>Suivez-moi</h2>
             <ul class="icons">
               <li>
                 <a
                   href="https://x.com/JxstGabi"
                   class="icon brands style2 fa-twitter"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter"
                   ><span class="label">Twitter</span></a
                 >
               </li>
@@ -132,6 +132,9 @@
                 <a
                   href="https://www.linkedin.com/in/gabriel-autret-93a664304/"
                   class="icon brands style2 fa-linkedin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                   ><span class="label">LinkedIn</span></a
                 >
               </li>
@@ -139,14 +142,17 @@
                 <a
                   href="https://github.com/JxstGabi"
                   class="icon brands style2 fa-github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
                   ><span class="label">GitHub</span></a
                 >
               </li>
             </ul>
           </section>
           <ul class="copyright">
-            <li>&copy; 2025 Gabriel Autret. Tous droits réservés</li>
-            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <li>&copy; 2026 Gabriel Autret. Tous droits réservés</li>
+            <li>Design: <a href="https://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a></li>
           </ul>
         </div>
       </footer>
@@ -160,3 +166,4 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+

@@ -1,19 +1,20 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <!--
 	Phantom by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="fr">
 	<head>
-		<title>Projet - AngerScoot</title>
+		<title>Projet Angerscoot | Gabriel Autret</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Projet Angerscoot de Gabriel Autret : solution client/serveur avec site PHP, application C# et base MySQL sur VM Debian." />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="icon" href="images/favicon.png" type="image/png" />		
+		<link rel="icon" href="images/favicon.png" type="image/png" />
 	</head>
-	<body class="is-preload">
+	<body class="is-preload dark-mode">
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -36,66 +37,74 @@
 						</div>
 					</header>
 
-					<!-- Menu -->
+				<!-- Menu -->
 					<nav id="menu">
-  					<h2>Menu</h2>
-
-  				<!-- Toggle positionné proprement -->
-  					<div class="dark-mode-toggle-container">
-    					<label class="switch">
-      						<input type="checkbox" id="darkModeToggle" />
-      						<span class="slider round"></span>
-    					</label>
-				    </div>
-						<ul>
+						<h2>Menu</h2>
+<ul>
 							<li><a href="index.html">Accueil</a></li>
-							<li><a href="images/CV Gabriel Autret.pdf">Mon cv</a></li>
+							<li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
 							<li><a href="skills.html">Mes compétences</a></li>
 							<li><a href="#footer">Mes contacts</a></li>
 						</ul>
-						</nav>
+					</nav>
 
 				<!-- Main -->
-					<div id="main">
+					<main id="main">
 						<div class="inner">
-							<h1>AngerScoot</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p>AngerScoot est un projet réalisé en binôme dans le cadre de ma première année de BTS SIO. L’objectif principal était de concevoir un système complet de gestion pour un réseau de bornes de recharge de trottinettes électriques et de scooter à Angers.</p>
-							<p>Le projet était divisé en deux parties complémentaires :</p>
+							<h1>Angerscoot</h1>
+							<span class="image main"><img src="images/pic13.jpg" alt="Illustration du projet Angerscoot" width="1152" height="326" decoding="async" /></span>
+
+							<h2>Contexte</h2>
+							<p>
+								Angerscoot est un projet réalisé en binôme pendant ma première année de BTS SIO.
+								L'objectif était de concevoir un système complet de gestion d'un réseau de bornes
+								de recharge pour trottinettes et scooters électriques à Angers.
+							</p>
+
+							<h2>Architecture du projet</h2>
 							<ul>
-    							<li>Un site web développé en HTML, CSS, JavaScript et <strong>PHP côté serveur</strong>, permettant de gérer dynamiquement les données via un back-end connecté à une base de données.</li>
-    							<li>Une application de bureau développée en C# (Windows Forms), jouant le rôle d'application client pour accéder et interagir avec les données.</li>
-  							</ul>
-							<p>La base de données MySQL était hébergée sur une machine virtuelle Debian, configurée comme un serveur accessible en réseau local via le Wi-Fi du BTS SIO. Cela permettait aux élèves de se connecter au site web hébergé sur ce serveur depuis n'importe quel poste du campus.</p>
-							<p>Ce projet m’a permis de mettre en place une architecture complète avec un back-end fonctionnel en PHP, d’utiliser une base de données relationnelle, et de collaborer efficacement à deux en répartissant les rôles entre développement web et développement applicatif.</p>
+								<li>Un site web en HTML, CSS, JavaScript et PHP côté serveur.</li>
+								<li>Une application de bureau C# (Windows Forms) pour l'administration.</li>
+								<li>Une base MySQL hébergée sur une machine virtuelle Debian en réseau local.</li>
+							</ul>
+
+							<h2>Mon rôle</h2>
+							<p>
+								J'ai participé à la mise en place du back-end PHP, à la structuration des données
+								relationnelles et à l'intégration entre les interfaces clientes et la base MySQL.
+								Le travail en binôme m'a aussi permis de mieux organiser la répartition des tâches.
+							</p>
+
+							<h2>Résultats et apprentissages</h2>
+							<p>
+								Ce projet m'a aidé à consolider mes bases en développement web dynamique,
+								base de données relationnelle et architecture client/serveur. J'y ai aussi gagné
+								en autonomie sur le déploiement d'un environnement de test en réseau local.
+							</p>
 						</div>
-					</div>
+					</main>
 
 				<!-- Footer -->
-					<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
 							<section>
 								<h2>Contactez-moi</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<p> <strong>autret.gabriel@gmail.com</strong> </p>
-										</div>
-										
-									</div>
-								</form>
+								<p>Disponible pour échanger sur mes projets, un stage ou une alternance.</p>
+								<ul class="actions">
+									<li><a href="mailto:autret.gabriel@gmail.com" class="button primary">M'envoyer un email</a></li>
+									<li><a href="images/CV Gabriel Autret.pdf" class="button" target="_blank" rel="noopener noreferrer">Voir mon CV (PDF)</a></li>
+								</ul>
 							</section>
 							<section>
-								<h2>Follow</h2>
+								<h2>Suivez-moi</h2>
 								<ul class="icons">
-									<li><a href="https://x.com/JxstGabi" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="https://www.linkedin.com/in/gabriel-autret-93a664304/" class="icon brands style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="https://github.com/JxstGabi" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://x.com/JxstGabi" class="icon brands style2 fa-twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.linkedin.com/in/gabriel-autret-93a664304/" class="icon brands style2 fa-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/JxstGabi" class="icon brands style2 fa-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span class="label">GitHub</span></a></li>
 								</ul>
 							</section>
 							<ul class="copyright">
-								<li>&copy; 2025 Gabriel Autret. Tous droits réservés</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>&copy; 2026 Gabriel Autret. Tous droits réservés</li><li>Design: <a href="https://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</footer>
@@ -111,3 +120,4 @@
 
 	</body>
 </html>
+

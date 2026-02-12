@@ -33,57 +33,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ===== TOGGLE SWITCH ===== */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* Slider (fond du toggle) */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 30px;
-}
-
-/* Cercle (avec icône) */
-.slider:before {
-  content: "🌞";
-  position: absolute;
-  height: 24px;
-  width: 24px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-}
-
-/* État actif (dark mode) */
-input:checked + .slider {
-  background-color: #303030;
-}
-
-input:checked + .slider:before {
-  transform: translateX(30px);
-  content: "🌙";
-}
-
 /* ===== DARK MODE STYLES ===== */
 body.dark-mode {
   background-color: #121212;
@@ -120,16 +69,400 @@ body.dark-mode a {
   color: #bb86fc;
 }
 
-#menu {
-  position: relative;
+/* ===== CURSEUR PERSONNALISE ===== */
+@media (pointer: fine) {
+  body.custom-cursor,
+  body.custom-cursor #menu,
+  body.custom-cursor #menu *,
+  body.custom-cursor #wrapper,
+  body.custom-cursor #wrapper *,
+  body.custom-cursor a,
+  body.custom-cursor button,
+  body.custom-cursor input,
+  body.custom-cursor textarea,
+  body.custom-cursor select,
+  body.custom-cursor label {
+    cursor: none !important;
+  }
+
+  #cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+    z-index: 10010;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.15s ease;
+  }
+
+  body.custom-cursor.cursor-active #cursor-dot {
+    opacity: 1;
+  }
+
+  body.custom-cursor.is-menu-visible #wrapper {
+    cursor: none !important;
+  }
 }
 
-/* Positionnement du bouton en haut à droite */
-.dark-mode-toggle-container {
+/* ===== SKILLS LAB ===== */
+.skills-hero {
+  margin: 0 0 2.4em 0;
+}
+
+.skills-kicker {
+  margin: 0 0 0.8em 0;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #8bd8ff;
+}
+
+.skills-hero > p {
+  margin: 0 0 1.3em 0;
+  max-width: 56ch;
+}
+
+.skills-hint {
+  margin: 0 0 1.1em 0 !important;
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(195, 236, 255, 0.86);
+}
+
+.skills-lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(15.5em, 1fr);
+  gap: 1.6em;
+  align-items: stretch;
+}
+
+.skills-map {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  min-height: 36em;
+  border-radius: 1.1em;
+  border: 1px solid rgba(142, 228, 255, 0.3);
+  background: radial-gradient(circle at 22% 18%, rgba(55, 161, 255, 0.22), transparent 45%), linear-gradient(140deg, #090f17, #0f1824 56%, #132738);
+  overflow: hidden;
+  touch-action: none;
+}
+
+.skills-map.is-dragging {
+  cursor: grabbing !important;
+}
+
+.skills-map__world {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  z-index: 10;
+  inset: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.skills-map__world,
+.skills-map__world * {
+  user-select: none;
+}
+
+.skills-map:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(16em circle at var(--mx) var(--my), rgba(118, 246, 209, 0.2), transparent 68%);
+  pointer-events: none;
+  transition: background 0.15s ease-out;
+}
+
+.skills-map:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 2.1em 2.1em;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.skills-map__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.skills-line {
+  fill: none;
+  stroke: rgba(144, 224, 255, 0.78);
+  stroke-width: 0.45;
+  stroke-linecap: round;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  opacity: 0.86;
+}
+
+.skills-line--sub {
+  stroke: rgba(144, 224, 255, 0.42);
+  stroke-width: 0.28;
+}
+
+.skill-node {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  z-index: 2;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  display: block;
+  min-width: 8.8em;
+  padding: 0.65em 0.78em;
+  border-radius: 0.9em;
+  border: 1px solid rgba(142, 228, 255, 0.35);
+  background: rgba(8, 15, 25, 0.86);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  color: #edf8ff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.skill-node__title {
+  display: block;
+  font-size: 0.66em;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.skill-node__meta {
+  display: block;
+  margin-top: 0.35em;
+  font-size: 0.58em;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.skill-node--core {
+  background: rgba(26, 45, 68, 0.92);
+  border-color: rgba(168, 237, 255, 0.68);
+}
+
+.skill-node--front {
+  border-color: rgba(255, 179, 102, 0.55);
+}
+
+.skill-node--back {
+  border-color: rgba(121, 241, 197, 0.52);
+}
+
+.skill-node--db {
+  border-color: rgba(140, 177, 255, 0.58);
+}
+
+.skill-node--dotnet {
+  border-color: rgba(210, 164, 255, 0.52);
+}
+
+.skill-node--api {
+  border-color: rgba(255, 217, 132, 0.6);
+}
+
+.skill-node--soft {
+  border-color: rgba(255, 160, 196, 0.6);
+}
+
+.skill-node:hover,
+.skill-node:focus-visible,
+.skill-node.is-active {
+  transform: translate(-50%, -50%) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 0 1.4em rgba(164, 236, 255, 0.38);
+  background: rgba(15, 26, 39, 0.95);
+  outline: none;
+}
+
+.skill-node.is-locked {
+  border-color: rgba(246, 255, 140, 0.95);
+  box-shadow: 0 0 0 1px rgba(246, 255, 140, 0.48) inset, 0 0 1.6em rgba(246, 255, 140, 0.34);
+}
+
+.skills-lab.is-primed .skill-node {
+  transform: translate(-50%, -50%) scale(0.82);
+  opacity: 0;
+}
+
+.skills-insight {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 26em;
+  border-radius: 1.1em;
+  border: 1px solid rgba(116, 224, 255, 0.36);
+  background: linear-gradient(150deg, rgba(9, 17, 27, 0.94), rgba(20, 32, 49, 0.94));
+  padding: 1.5em 1.4em;
+  overflow: hidden;
+}
+
+.skills-insight:before {
+  content: "";
+  position: absolute;
+  top: -2em;
+  right: -3em;
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(145, 246, 228, 0.35), transparent 68%);
+}
+
+.skills-insight__label {
+  position: relative;
+  margin: 0 0 0.75em 0;
+  font-size: 0.66em;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #8cdfff;
+}
+
+.skills-lab.is-node-locked .skills-insight__label {
+  color: #f6ff8c;
+}
+
+.skills-insight h2 {
+  position: relative;
+  margin: 0 0 0.85em 0;
+  font-size: 1.12em;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+#skillsInsightText {
+  position: relative;
+  margin: 0;
+  min-height: 9.6em;
+  max-height: 9.6em;
+  overflow-y: auto;
+  padding-right: 0.25em;
+  line-height: 1.6;
+  color: rgba(228, 243, 255, 0.92);
+}
+
+.skills-insight__links {
+  position: relative;
+  margin-top: auto;
+  padding-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55em;
+}
+
+.skills-insight__links .button {
+  margin: 0;
+}
+
+body.dark-mode .skills-insight__links .button {
+  color: #ffffff;
+}
+
+.skills-lab.is-primed.is-live .skills-line {
+  animation: drawSkillLine 1.15s ease forwards;
+}
+
+.skills-lab.is-primed.is-live .skills-line--sub {
+  animation-delay: 0.25s;
+}
+
+.skills-lab.is-primed.is-live .skill-node {
+  animation: revealSkillNode 0.6s cubic-bezier(0.21, 1, 0.33, 1) forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes drawSkillLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes revealSkillNode {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .skills-lab {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-map {
+    min-height: 32em;
+  }
+
+  .skills-insight {
+    min-height: 21em;
+  }
+
+  #skillsInsightText {
+    min-height: 7.5em;
+    max-height: 7.5em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .skills-map {
+    min-height: 27em;
+  }
+
+  .skill-node {
+    min-width: 6.4em;
+    padding: 0.5em 0.55em;
+  }
+
+  .skill-node__title {
+    font-size: 0.58em;
+    letter-spacing: 0.1em;
+  }
+
+  .skill-node__meta {
+    display: none;
+  }
+
+  .skills-insight {
+    min-height: 20em;
+  }
+
+  #skillsInsightText {
+    min-height: 6.8em;
+    max-height: 6.8em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-lab.is-primed.is-live .skills-line,
+  .skills-lab.is-primed.is-live .skill-node {
+    animation: none !important;
+  }
+
+  .skills-lab .skills-line {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .skills-lab .skill-node {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+  }
 }
 
 
@@ -2422,10 +2755,12 @@ input, select, textarea {
 		position: relative;
 	}
 
-		.image img {
-			border-radius: 4px;
-			display: block;
-		}
+	.image img {
+		border-radius: 4px;
+		display: block;
+		height: auto;
+		max-width: 100%;
+	}
 
 		.image.left, .image.right {
 			max-width: 40%;
@@ -2455,6 +2790,7 @@ input, select, textarea {
 
 			.image.fit img {
 				width: 100%;
+				height: auto;
 			}
 
 		.image.main {
@@ -2465,6 +2801,7 @@ input, select, textarea {
 
 			.image.main img {
 				width: 100%;
+				height: auto;
 			}
 
 			@media screen and (max-width: 736px) {
@@ -2708,7 +3045,8 @@ input, select, textarea {
 					display: block;
 					width: 100%;
 					height: 100%;
-					object-fit: cover;
+					object-fit: contain;
+					background-color: #111111;
 				}
 
 				.tiles article > .image:before {

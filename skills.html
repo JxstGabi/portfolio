@@ -1,19 +1,20 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <!--
 	Phantom by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="fr">
 	<head>
-		<title>Info supplémentaire</title>
+		<title>Compétences | Gabriel Autret</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Compétences techniques et soft skills de Gabriel Autret, étudiant en BTS SIO." />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="icon" href="images/favicon.png" type="image/png" />        
+		<link rel="icon" href="images/favicon.png" type="image/png" />
 	</head>
-	<body class="is-preload">
+	<body class="is-preload dark-mode">
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -23,7 +24,7 @@
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">à propos de moi</span>
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">À propos de moi</span>
 								</a>
 
 							<!-- Nav -->
@@ -38,71 +39,131 @@
 
 				<!-- Menu -->
 					<nav id="menu">
-  					<h2>Menu</h2>
-
-  				<!-- Toggle positionné proprement -->
-  					<div class="dark-mode-toggle-container">
-    					<label class="switch">
-      						<input type="checkbox" id="darkModeToggle" />
-      						<span class="slider round"></span>
-    					</label>
-				    </div>
-						<ul>
+						<h2>Menu</h2>
+<ul>
 							<li><a href="index.html">Accueil</a></li>
-							<li><a href="images/CV Gabriel Autret.pdf">Mon cv</a></li>
+							<li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
 							<li><a href="skills.html">Mes compétences</a></li>
 							<li><a href="#footer">Mes contacts</a></li>
-							
 						</ul>
-						</nav>
+					</nav>
 
 				<!-- Main -->
-					<div id="main">
+					<main id="main">
 						<div class="inner">
-							<h1>Mes compétences</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="Capture de FlashIdentif" /></span>
-                            <h2> Soft skills : </h2>
-							<p>
-							En tant que personne naturellement curieuse et persévérante, j’aborde les défis avec détermination et débrouillardise. J’aime comprendre les choses par moi-même et trouver des solutions concrètes, même face à des situations complexes.<br>
-                            Bien que discret de nature, je m’ouvre facilement aux autres dans un cadre de travail bienveillant, ce qui me permet de collaborer efficacement en équipe. Mon sens de l’humour et ma capacité à m’adapter aux différentes personnalités contribuent à créer une bonne ambiance de travail.<br>
-                            Je sais garder mon calme en situation de stress, et je fais preuve d’une bonne capacité d’improvisation lorsque les circonstances l’exigent.
-							</p>
-                            
-                            <h2> Hard skills : </h2>
-							<p>
-                                Au fil de ma formation en BTS SIO et de mes projets personnels, j’ai acquis des compétences techniques solides dans le développement web et logiciel. <br>
-                                Je maîtrise les langages HTML, CSS et JavaScript pour concevoir des interfaces web interactives, ainsi que le PHP et SQL pour la gestion côté serveur et base de données.<br>
-                                J’ai travaillé avec MySQL, notamment dans un contexte de base de données distante, ce qui m’a permis de développer des requêtes complexes et d’assurer la communication entre le front-end et le back-end.
-                                En parallèle, j’ai utilisé C# dans des travaux pratiques, ce qui m’a permis d’approfondir mes compétences en développement logiciel.<br> 
-                                Je suis à l’aise avec des outils comme Visual Studio, VS Code et je suis capable de mettre en place un environnement de test local ou connecté en réseau pour développer et valider mes applications.
-							</p>
+							<section class="skills-hero">
+								<p class="skills-kicker">Skill Tree Interactif</p>
+								<h1>Compétences en évolution continue</h1>
+								<p>
+									Cette page montre mes compétences comme un arbre de progression. Chaque nœud représente un domaine que
+									j'ai consolidé pendant mes projets BTS SIO.
+								</p>
+							</section>
+
+							<section class="skills-lab" id="skillsLab" aria-label="Arbre de compétences">
+								<div class="skills-map" id="skillsMap">
+									<div class="skills-map__world" id="skillsWorld">
+										<svg class="skills-map__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+											<path class="skills-line" d="M50 50 L21 18" />
+											<path class="skills-line" d="M50 50 L81 19" />
+											<path class="skills-line" d="M50 50 L16 54" />
+											<path class="skills-line" d="M50 50 L83 53" />
+											<path class="skills-line" d="M50 50 L30 80" />
+											<path class="skills-line" d="M50 50 L68 82" />
+											<path class="skills-line skills-line--sub" d="M21 18 L16 54" />
+											<path class="skills-line skills-line--sub" d="M81 19 L83 53" />
+											<path class="skills-line skills-line--sub" d="M30 80 L68 82" />
+										</svg>
+
+										<button class="skill-node skill-node--core" type="button" style="--x: 50%; --y: 50%; --delay: 0.05s;"
+											data-title="BTS SIO - Base solide"
+											data-proof="Contexte : formation BTS SIO avec projets concrets en équipe. J'y ai consolidé l'architecture d'applications, la méthodologie de projet et la résolution de problèmes."
+											data-links="index.html|Vue d'ensemble|Contexte global : vision synthétique de mon parcours et de mes travaux techniques.;projet1.html|Projet Hackathon|Contexte : hackathon de 15h avec contraintes fortes et livraison rapide.;projet2.html|Projet Angerscoot|Contexte : projet en binôme orienté architecture client/serveur.;projet3.html|Projet CaleSons|Contexte : projet long en équipe agile avec plusieurs applications connectées.">
+											<span class="skill-node__title">BTS SIO</span>
+											<span class="skill-node__meta">Nœud central</span>
+										</button>
+
+										<button class="skill-node skill-node--front" type="button" style="--x: 21%; --y: 18%; --delay: 0.15s;"
+											data-title="Front-end"
+											data-proof="Contexte : portfolio personnel et interfaces de projets web. J'ai conçu des pages responsives en HTML/CSS/JS avec animations et amélioration de l'expérience utilisateur."
+											data-links="index.html|Portfolio|Contexte : conception d'interfaces modernes, animations et amélioration de l'expérience utilisateur.;projet1.html|Hackathon web|Contexte : création d'une interface claire pour exploiter rapidement les données en temps limité.;projet2.html|Interface Angerscoot|Contexte : interface web liée à une base distante et à un usage campus.">
+											<span class="skill-node__title">Front-end</span>
+											<span class="skill-node__meta">HTML · CSS · JS</span>
+										</button>
+
+									<button class="skill-node skill-node--back" type="button" style="--x: 81%; --y: 19%; --delay: 0.22s;"
+										data-title="Back-end PHP / Laravel"
+										data-proof="Contexte : projet Hackathon restauration scolaire et application web CaleSons. J'ai travaillé la logique métier, l'accès aux données et la gestion des comptes utilisateurs."
+										data-links="projet1.html|Hackathon Laravel|Contexte : logique métier rapide autour des données OpenDataSoft et des comptes parents.;projet2.html|Back-end Angerscoot|Contexte : gestion dynamique des données et communication avec la base MySQL.;projet3.html|Web CaleSons|Contexte : APIs et fonctionnalités utilisateur pour une application événementielle.">
+										<span class="skill-node__title">Back-end</span>
+										<span class="skill-node__meta">PHP · Laravel</span>
+									</button>
+
+									<button class="skill-node skill-node--db" type="button" style="--x: 16%; --y: 54%; --delay: 0.3s;"
+										data-title="Bases de données"
+										data-proof="Contexte : Angerscoot en binôme avec une base MySQL sur VM Debian. J'ai pratiqué la modélisation, les requêtes SQL et l'exploitation en architecture client/serveur."
+										data-links="projet2.html|MySQL Angerscoot|Contexte : base distante sur VM Debian, requêtes SQL et exploitation en réseau local.;projet3.html|Données CaleSons|Contexte : gestion des entités métiers et statistiques liées aux réservations.">
+										<span class="skill-node__title">Data</span>
+										<span class="skill-node__meta">SQL · MySQL</span>
+									</button>
+
+									<button class="skill-node skill-node--dotnet" type="button" style="--x: 83%; --y: 53%; --delay: 0.38s;"
+										data-title="Développement C# / .NET"
+										data-proof="Contexte : projet CaleSons en équipe agile sur 9 semaines. J'ai contribué au back-office C#/.NET avec gestion des entités et fonctionnalités d'administration."
+										data-links="projet3.html|Back-office CaleSons|Contexte : application de bureau en C#/.NET pour administrer événements, utilisateurs et statistiques.">
+										<span class="skill-node__title">C# / .NET</span>
+										<span class="skill-node__meta">Back-office</span>
+									</button>
+
+									<button class="skill-node skill-node--api" type="button" style="--x: 30%; --y: 80%; --delay: 0.46s;"
+										data-title="APIs et intégration"
+										data-proof="Contexte : hackathon de 15h avec sujet attribué. J'ai intégré des données OpenDataSoft et géré l'interconnexion entre services et interfaces."
+										data-links="projet1.html|APIs OpenDataSoft|Contexte : intégration de données publiques pour la carte et les menus cantine.;projet3.html|API web vers mobile|Contexte : échanges entre application web et application mobile pour les réservations.">
+										<span class="skill-node__title">API</span>
+										<span class="skill-node__meta">OpenData · REST</span>
+									</button>
+
+										<button class="skill-node skill-node--soft" type="button" style="--x: 68%; --y: 82%; --delay: 0.54s;"
+											data-title="Soft skills"
+											data-proof="Contexte : projets en binôme et en équipe de 4 (méthode agile). J'ai renforcé la communication, l'autonomie, l'adaptation et la coordination avec les autres profils."
+											data-links="projet1.html|Hackathon en contrainte|Contexte : priorisation rapide et prise de décision sous contrainte de temps.;projet2.html|Travail en binôme|Contexte : coordination technique et répartition claire des responsabilités.;projet3.html|Équipe agile|Contexte : collaboration en SCRUM avec suivi des tâches et adaptation continue.">
+											<span class="skill-node__title">Soft skills</span>
+											<span class="skill-node__meta">Agile · Teamwork</span>
+										</button>
+									</div>
+								</div>
+
+								<aside class="skills-insight" id="skillsInsight" aria-live="polite">
+									<p class="skills-insight__label">Focus actuel</p>
+									<h2 id="skillsInsightTitle">Explore un nœud</h2>
+									<p id="skillsInsightText">Survole un nœud (ou clique sur mobile) pour afficher les preuves projet.</p>
+									<div id="skillsInsightLinks" class="skills-insight__links" aria-label="Projets liés"></div>
+								</aside>
+							</section>
 						</div>
-					</div>
+					</main>
+
 				<!-- Footer -->
-					<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
 							<section>
 								<h2>Contactez-moi</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<p> <strong>autret.gabriel@gmail.com</strong> </p>
-										</div>
-									
-									</div>
-								</form>
+								<p>Disponible pour échanger sur mes projets, un stage ou une alternance.</p>
+								<ul class="actions">
+									<li><a href="mailto:autret.gabriel@gmail.com" class="button primary">M'envoyer un email</a></li>
+									<li><a href="images/CV Gabriel Autret.pdf" class="button" target="_blank" rel="noopener noreferrer">Voir mon CV (PDF)</a></li>
+								</ul>
 							</section>
 							<section>
-								<h2>Follow</h2>
+								<h2>Suivez-moi</h2>
 								<ul class="icons">
-									<li><a href="https://x.com/JxstGabi" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="https://www.linkedin.com/in/gabriel-autret-93a664304/" class="icon brands style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="https://github.com/JxstGabi" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://x.com/JxstGabi" class="icon brands style2 fa-twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.linkedin.com/in/gabriel-autret-93a664304/" class="icon brands style2 fa-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/JxstGabi" class="icon brands style2 fa-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span class="label">GitHub</span></a></li>
 								</ul>
 							</section>
 							<ul class="copyright">
-								<li>&copy; 2025 Gabriel Autret. Tous droits réservés</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>&copy; 2026 Gabriel Autret. Tous droits réservés</li><li>Design: <a href="https://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</footer>
@@ -118,3 +179,4 @@
 
 	</body>
 </html>
+
