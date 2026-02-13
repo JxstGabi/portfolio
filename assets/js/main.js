@@ -72,6 +72,8 @@
 	var activeNode = null;
 	var lockedNode = null;
 	var activeDefaultProof = '';
+	var insightSwapTimer = null;
+	var insightTextTimer = null;
 	var minScale = 0.85;
 	var maxScale = 2.2;
 	var view = { tx: 0, ty: 0, scale: 1 };
@@ -143,6 +145,60 @@
 		return links;
 	};
 
+	var setInsightText = function(text, options) {
+		options = options || {};
+
+		if (!insightText)
+			return;
+		if (!options.force && insightText.textContent === text)
+			return;
+
+		if (options.instant) {
+			insightText.textContent = text;
+			return;
+		}
+
+		if (insightTextTimer)
+			window.clearTimeout(insightTextTimer);
+
+		insightText.classList.add('is-swapping');
+		insightTextTimer = window.setTimeout(function() {
+			insightText.textContent = text;
+			window.requestAnimationFrame(function() {
+				insightText.classList.remove('is-swapping');
+			});
+			insightTextTimer = null;
+		}, 85);
+	};
+
+	var swapInsightPanel = function(applyChanges) {
+		var panels = [insightTitle, insightText, insightLinks].filter(function(item) {
+			return !!item;
+		});
+
+		if (!panels.length) {
+			applyChanges();
+			return;
+		}
+
+		if (insightSwapTimer)
+			window.clearTimeout(insightSwapTimer);
+
+		panels.forEach(function(item) {
+			item.classList.add('is-swapping');
+		});
+
+		insightSwapTimer = window.setTimeout(function() {
+			applyChanges();
+			window.requestAnimationFrame(function() {
+				panels.forEach(function(item) {
+					item.classList.remove('is-swapping');
+				});
+			});
+			insightSwapTimer = null;
+		}, 110);
+	};
+
 	var updateLockState = function() {
 		if (insightLabel)
 			insightLabel.textContent = lockedNode ? 'Focus verrouillé' : 'Focus actuel';
@@ -152,7 +208,7 @@
 
 	var restoreDefaultProof = function(node) {
 		if (insightText && activeNode === node)
-			insightText.textContent = activeDefaultProof;
+			setInsightText(activeDefaultProof);
 	};
 
 	var activateNode = function(node, options) {
@@ -171,46 +227,48 @@
 			item.classList.toggle('is-locked', item === lockedNode);
 		});
 
-		if (insightTitle)
-			insightTitle.textContent = node.getAttribute('data-title') || '';
-		if (insightText)
-			insightText.textContent = activeDefaultProof;
-
-		if (insightLinks) {
-			var projectLinks = getNodeLinks(node);
-
-			insightLinks.innerHTML = '';
-
-			projectLinks.forEach(function(link, index) {
-				var anchor = document.createElement('a');
-				anchor.href = link.href;
-				anchor.className = index === 0 ? 'button primary small' : 'button small';
-				anchor.textContent = link.label;
-
-				if (link.context && insightText) {
-					anchor.addEventListener('mouseenter', function() {
-						if (activeNode === node)
-							insightText.textContent = link.context;
-					});
-					anchor.addEventListener('focus', function() {
-						if (activeNode === node)
-							insightText.textContent = link.context;
-					});
-					anchor.addEventListener('mouseleave', function() {
-						restoreDefaultProof(node);
-					});
-					anchor.addEventListener('blur', function() {
-						restoreDefaultProof(node);
-					});
-				}
-
-				insightLinks.appendChild(anchor);
-			});
-
-			insightLinks.hidden = projectLinks.length === 0;
-		}
-
 		updateLockState();
+
+		swapInsightPanel(function() {
+			if (insightTitle)
+				insightTitle.textContent = node.getAttribute('data-title') || '';
+			if (insightText)
+				insightText.textContent = activeDefaultProof;
+
+			if (insightLinks) {
+				var projectLinks = getNodeLinks(node);
+
+				insightLinks.innerHTML = '';
+
+				projectLinks.forEach(function(link, index) {
+					var anchor = document.createElement('a');
+					anchor.href = link.href;
+					anchor.className = 'button small';
+					anchor.textContent = link.label;
+
+					if (link.context && insightText) {
+						anchor.addEventListener('mouseenter', function() {
+							if (activeNode === node)
+								setInsightText(link.context);
+						});
+						anchor.addEventListener('focus', function() {
+							if (activeNode === node)
+								setInsightText(link.context);
+						});
+						anchor.addEventListener('mouseleave', function() {
+							restoreDefaultProof(node);
+						});
+						anchor.addEventListener('blur', function() {
+							restoreDefaultProof(node);
+						});
+					}
+
+					insightLinks.appendChild(anchor);
+				});
+
+				insightLinks.hidden = projectLinks.length === 0;
+			}
+		});
 	};
 
 	lines.forEach(function(line, index) {
@@ -344,6 +402,85 @@
 	}
 	else
 		startLabAnimation();
+})();
+
+(function initJourneyTimeline() {
+	var journey = document.querySelector('.journey');
+	if (!journey)
+		return;
+
+	var list = journey.querySelector('.journey__list');
+	var items = Array.prototype.slice.call(journey.querySelectorAll('.journey__item'));
+	var isReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var ticking = false;
+
+	if (!list || !items.length)
+		return;
+
+	var setProgress = function(value) {
+		var clamped = Math.max(0, Math.min(1, value));
+		list.style.setProperty('--journey-progress', clamped.toFixed(3));
+	};
+
+	var updateProgress = function() {
+		var rect = list.getBoundingClientRect();
+		var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+		var start = viewportHeight * 0.9;
+		var end = viewportHeight * 0.18;
+		var span = rect.height + (start - end);
+
+		if (span <= 0) {
+			setProgress(rect.top <= end ? 1 : 0);
+			return;
+		}
+
+		setProgress((start - rect.top) / span);
+	};
+
+	if (isReducedMotion) {
+		setProgress(1);
+		items.forEach(function(item) {
+			item.classList.add('is-revealed');
+		});
+		return;
+	}
+
+	journey.classList.add('is-anim-ready');
+
+	items.forEach(function(item, index) {
+		item.style.setProperty('--journey-delay', (index * 0.05).toFixed(2) + 's');
+	});
+
+	var revealVisibleItems = function() {
+		var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+		var revealAt = viewportHeight * 0.82;
+
+		items.forEach(function(item) {
+			if (item.classList.contains('is-revealed'))
+				return;
+
+			var rect = item.getBoundingClientRect();
+			if (rect.top <= revealAt)
+				item.classList.add('is-revealed');
+		});
+	};
+
+	var scheduleProgressUpdate = function() {
+		if (ticking)
+			return;
+
+		ticking = true;
+		window.requestAnimationFrame(function() {
+			updateProgress();
+			revealVisibleItems();
+			ticking = false;
+		});
+	};
+
+	updateProgress();
+	revealVisibleItems();
+	window.addEventListener('scroll', scheduleProgressUpdate, { passive: true });
+	window.addEventListener('resize', scheduleProgressUpdate, { passive: true });
 })();
 
 (function initPageOpenEffects() {
