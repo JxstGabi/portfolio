@@ -50,6 +50,14 @@ body.dark-mode #footer a {
   color: #89c9ff;
 }
 
+body.dark-mode #footer > .inner .copyright {
+  color: #ffffff;
+}
+
+body.dark-mode #footer > .inner .copyright li {
+  border-left-color: rgba(255, 255, 255, 0.45);
+}
+
 /* CONTENU PRINCIPAL */
 body.dark-mode #main,
 body.dark-mode #main .inner {
@@ -67,6 +75,31 @@ body.dark-mode section.tiles article {
 /* LIENS GÉNÉRAUX */
 body.dark-mode a {
   color: #bb86fc;
+}
+
+/* ===== PAGE OPEN FX ===== */
+.open-fx-item {
+  transition: opacity 0.58s ease, transform 0.58s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.58s ease;
+  transition-delay: var(--open-fx-delay, 0s);
+  will-change: opacity, transform, filter;
+}
+
+body.open-fx-pending .open-fx-item {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .open-fx-item {
+    transition: none !important;
+  }
+
+  body.open-fx-pending .open-fx-item {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 /* ===== CURSEUR PERSONNALISE ===== */
@@ -3278,6 +3311,10 @@ input, select, textarea {
 		padding: 8em 0 0.1em 0 ;
 	}
 
+		#header .inner {
+			position: relative;
+		}
+
 		#header .logo {
 			display: block;
 			border-bottom: 0;
@@ -3306,10 +3343,41 @@ input, select, textarea {
 				}
 
 		#header nav {
-			position: fixed;
-			right: 2em;
-			top: 2em;
+			position: absolute;
+			right: 0;
+			top: -6em;
 			z-index: 10000;
+		}
+
+		#header nav.site-nav .site-nav__desktop {
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: -ms-flex;
+			display: flex;
+			gap: 0.6em;
+		}
+
+		#header nav.site-nav .site-nav__desktop li a {
+			float: none;
+			width: auto;
+			height: auto;
+			line-height: 1.5;
+			padding: 0;
+			text-align: center;
+			font-size: 0.72em;
+			letter-spacing: 0.22em;
+			font-weight: 900;
+			text-transform: uppercase;
+			background-color: transparent;
+			border-radius: 0;
+			border: 0;
+			color: #ffffff;
+			border-bottom: 0;
+			white-space: nowrap;
+		}
+
+		#header nav.site-nav .site-nav__mobile {
+			display: none;
 		}
 
 			#header nav ul {
@@ -3400,6 +3468,17 @@ input, select, textarea {
 				#header nav {
 					right: 0.5em;
 					top: 0.5em;
+				}
+
+				#header nav.site-nav .site-nav__desktop {
+					display: none;
+				}
+
+				#header nav.site-nav .site-nav__mobile {
+					display: -moz-flex;
+					display: -webkit-flex;
+					display: -ms-flex;
+					display: flex;
 				}
 
 					#header nav ul li a[href="#menu"]:before, #header nav ul li a[href="#menu"]:after {

@@ -346,6 +346,41 @@
 		startLabAnimation();
 })();
 
+(function initPageOpenEffects() {
+	var body = document.body;
+	var selectors = ['#header .inner > *', '#main .inner > *', '#footer .inner > *'];
+	var items = [];
+
+	if (!body)
+		return;
+	if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+		return;
+
+	selectors.forEach(function(selector) {
+		Array.prototype.slice.call(document.querySelectorAll(selector)).forEach(function(node) {
+			if (items.indexOf(node) !== -1)
+				return;
+			items.push(node);
+		});
+	});
+
+	if (!items.length)
+		return;
+
+	body.classList.add('open-fx-pending');
+
+	items.forEach(function(item, index) {
+		item.classList.add('open-fx-item');
+		item.style.setProperty('--open-fx-delay', (index * 0.08).toFixed(2) + 's');
+	});
+
+	window.addEventListener('load', function() {
+		window.setTimeout(function() {
+			body.classList.remove('open-fx-pending');
+		}, 180);
+	}, { once: true });
+})();
+
 (function($) {
 
 	var	$window = $(window),
