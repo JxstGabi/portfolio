@@ -134,7 +134,21 @@ body.open-fx-pending .open-fx-item {
     transition: opacity 0.15s ease;
   }
 
+  #cursor-trail-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10009;
+    opacity: 0;
+    transition: opacity 0.14s ease;
+    will-change: opacity;
+  }
+
   body.custom-cursor.cursor-active #cursor-dot {
+    opacity: 1;
+  }
+
+  body.custom-cursor.cursor-active #cursor-trail-canvas {
     opacity: 1;
   }
 

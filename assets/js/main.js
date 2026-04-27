@@ -13,25 +13,117 @@
 
 	var body = document.body;
 	var dot = document.createElement('div');
+	var trailCanvas = document.createElement('canvas');
+	var trailCtx = null;
+	var trailPoints = [];
+	var trailLifetime = 240;
+	var maxTrailPoints = 60;
+	var hasReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var useTrail = !hasReducedMotion;
 	var x = 0;
 	var y = 0;
+	var canvasReady = false;
 	var rafId = null;
 
 	dot.id = 'cursor-dot';
 	dot.setAttribute('aria-hidden', 'true');
+	trailCanvas.id = 'cursor-trail-canvas';
+	trailCanvas.setAttribute('aria-hidden', 'true');
+
+	if (useTrail) {
+		trailCtx = trailCanvas.getContext('2d');
+	}
+
 	body.appendChild(dot);
+	if (useTrail)
+		body.appendChild(trailCanvas);
 	body.classList.add('custom-cursor');
+
+	var setupCanvas = function() {
+		if (!useTrail || !trailCtx)
+			return;
+
+		var ratio = window.devicePixelRatio || 1;
+		var width = window.innerWidth;
+		var height = window.innerHeight;
+
+		trailCanvas.width = Math.max(1, Math.floor(width * ratio));
+		trailCanvas.height = Math.max(1, Math.floor(height * ratio));
+		trailCanvas.style.width = width + 'px';
+		trailCanvas.style.height = height + 'px';
+
+		trailCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+		trailCtx.clearRect(0, 0, width, height);
+		canvasReady = true;
+	};
+
+	var addTrailPoint = function(px, py) {
+		if (!useTrail)
+			return;
+
+		var now = window.performance ? performance.now() : Date.now();
+		trailPoints.push({ x: px, y: py, t: now });
+
+		if (trailPoints.length > maxTrailPoints)
+			trailPoints.splice(0, trailPoints.length - maxTrailPoints);
+	};
 
 	var draw = function() {
 		dot.style.left = x + 'px';
 		dot.style.top = y + 'px';
-		rafId = null;
+
+		if (!useTrail) {
+			rafId = null;
+			return;
+		}
+
+		if (!canvasReady)
+			setupCanvas();
+
+		if (trailCtx) {
+			var now = window.performance ? performance.now() : Date.now();
+			var width = window.innerWidth;
+			var height = window.innerHeight;
+
+			trailCtx.clearRect(0, 0, width, height);
+
+			trailPoints = trailPoints.filter(function(point) {
+				return (now - point.t) <= trailLifetime;
+			});
+
+			if (trailPoints.length > 1) {
+				trailCtx.lineCap = 'round';
+				trailCtx.lineJoin = 'round';
+
+				for (var i = 1; i < trailPoints.length; i++) {
+					var prev = trailPoints[i - 1];
+					var current = trailPoints[i];
+					var age = now - current.t;
+					var progress = 1 - (age / trailLifetime);
+					var alpha = Math.max(0, progress) * 0.35;
+					var thickness = 0.8 + (progress * 4);
+
+					trailCtx.strokeStyle = 'rgba(255, 255, 255, ' + alpha.toFixed(3) + ')';
+					trailCtx.lineWidth = thickness;
+					trailCtx.beginPath();
+					trailCtx.moveTo(prev.x, prev.y);
+					trailCtx.lineTo(current.x, current.y);
+					trailCtx.stroke();
+				}
+			}
+		}
+
+		if (body.classList.contains('cursor-active') || trailPoints.length > 0)
+			rafId = window.requestAnimationFrame(draw);
+		else
+			rafId = null;
 	};
 
 	var handleMove = function(event) {
 		x = event.clientX;
 		y = event.clientY;
 		body.classList.add('cursor-active');
+		addTrailPoint(x, y);
 
 		if (!rafId)
 			rafId = window.requestAnimationFrame(draw);
@@ -47,9 +139,22 @@
 			body.classList.remove('cursor-active');
 	});
 
+	window.addEventListener('resize', function() {
+		setupCanvas();
+	}, { passive: true });
+
 	window.addEventListener('blur', function() {
 		body.classList.remove('cursor-active');
+		trailPoints = [];
+		if (trailCtx)
+			trailCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+		if (rafId) {
+			window.cancelAnimationFrame(rafId);
+			rafId = null;
+		}
 	});
+
+	setupCanvas();
 })();
 
 (function initSkillsLab() {
@@ -425,16 +530,16 @@
 	var updateProgress = function() {
 		var rect = list.getBoundingClientRect();
 		var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-		var start = viewportHeight * 0.9;
-		var end = viewportHeight * 0.18;
-		var span = rect.height + (start - end);
+		var startTop = viewportHeight * 0.9;
+		var endTop = (viewportHeight - rect.height) * 0.5;
+		var span = startTop - endTop;
 
 		if (span <= 0) {
-			setProgress(rect.top <= end ? 1 : 0);
+			setProgress(rect.top <= endTop ? 1 : 0);
 			return;
 		}
 
-		setProgress((start - rect.top) / span);
+		setProgress((startTop - rect.top) / span);
 	};
 
 	if (isReducedMotion) {
