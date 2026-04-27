@@ -1,0 +1,174 @@
+﻿<!doctype html>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="fr">
+  <head>
+    <title>Projet Milidex | Gabriel Autret</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Projet Milidex de Gabriel Autret : développement d'une application mobile capable d'identifier des engins militaire."
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+  </head>
+  <body class="is-preload dark-mode">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <div class="inner">
+          <!-- Logo -->
+          <a href="index.html" class="logo">
+            <span class="symbol"><img src="images/logo.svg" alt="" /></span
+            ><span class="title">Mes projets</span>
+          </a>
+
+          <!-- Nav -->
+								<nav class="site-nav" aria-label="Navigation principale">
+									<ul class="site-nav__desktop">
+										<li><a href="index.html">Accueil</a></li>
+										<li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
+										<li><a href="skills.html">Mes compétences</a></li>
+										<li><a href="#footer">Mes contacts</a></li>
+									</ul>
+									<ul class="site-nav__mobile">
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+        </div>
+      </header>
+
+      <!-- Menu -->
+      <nav id="menu">
+        <h2>Menu</h2>
+<ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
+          <li><a href="skills.html">Mes compétences</a></li>
+          <li><a href="#footer">Mes contacts</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <main id="main">
+        <div class="inner">
+          <h1>Milidex - Projet de stage (application flutter)</h1>
+          <span class="image main"
+            ><img
+              src="images/fonctionnement_Milidex.png"
+              alt="Tableau de bord back-office du projet CaleSons"
+              width="1918"
+              height="1098"
+              decoding="async"
+          /></span>
+
+          <h2>Contexte</h2>
+          <p>
+            Milidex est une application mobile réalisé durant ma deuxième année de BTS SIO.
+            Ce travail a été mené en stage pendant 7 semaines avec l'aide de mon maître de stage.
+          </p>
+
+          <h2>Technologies du projet</h2>
+          <ul>
+            <li>Python (via Anaconda3) pour préparer les données et gérer l'entraînement des modèles.</li>
+            <li>LabelImg pour annoter les images et créer les fichiers de labels utilisés par YOLO.</li>
+            <li>YOLOv8 pour la détection et la reconnaissance d'engins sur images et vidéos.</li>
+            <li>Flutter (Dart) pour développer l'application mobile.</li>
+            <li>Raspberry Pi avec Apache2 pour héberger le serveur web du projet.</li>
+          </ul>
+
+          <h2>Fonctionnalités de l'application Flutter</h2>
+          <ul>
+            <li>Repérer les engins militaires sur les vidéos en temps réel.</li>
+            <li>Capturer l'objet identifier et faire des annotations.</li>
+            <li>Analyser l'image capturée pour reconnaître le modèle de l'engin.</li>
+            <li>Envoyer les images annotées vers le serveur ou les télécharger localement si le serveur n'est pas accessible.</li>
+            <li>Afficher les résultats de la reconnaissance d'objets.</li>
+            <li>Créer une correction format YOLO afin de l'envoyer au serveur et enrichir les données.</li>
+          </ul>
+
+          <h2>Résultats et apprentissages</h2>
+          <p>
+            Ce projet m'a permis de renforcer mes compétences en Flutter et d'acquérir une expérience
+            dans la création de modèles d'IA.
+            <br />
+            Annotation de données, entraînement et amélioration de modèles YOLO, puis
+            intégration dans une application Flutter avec gestion de l'envoi serveur et
+            du mode hors ligne.
+          </p>
+        </div>
+      </main>
+      <!-- Footer -->
+
+      <footer id="footer">
+        <div class="inner">
+          <section>
+            <h2>Contactez-moi</h2>
+            <p>Disponible pour échanger sur mes projets, un stage ou une alternance.</p>
+            <ul class="actions">
+              <li><a href="mailto:autret.gabriel@gmail.com" class="button primary">M'envoyer un email</a></li>
+              <li><a href="images/CV Gabriel Autret.pdf" class="button" target="_blank" rel="noopener noreferrer">Voir mon CV (PDF)</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Suivez-moi</h2>
+            <ul class="icons">
+              <li>
+                <a
+                  href="https://x.com/JxstGabi"
+                  class="icon brands style2 fa-twitter"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter"
+                  ><span class="label">Twitter</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/gabriel-autret-93a664304/"
+                  class="icon brands style2 fa-linkedin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  ><span class="label">LinkedIn</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/JxstGabi"
+                  class="icon brands style2 fa-github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  ><span class="label">GitHub</span></a
+                >
+              </li>
+            </ul>
+          </section>
+          <ul class="copyright">
+            <li>&copy; 2026 Gabriel Autret. Tous droits réservés</li>
+            <li>Design: <a href="https://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
