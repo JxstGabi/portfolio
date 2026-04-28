@@ -623,6 +623,205 @@
 	}, { once: true });
 })();
 
+(function initContactComposeForm() {
+	var form = document.getElementById('contactComposeForm');
+	if (!form)
+		return;
+
+	var status = document.getElementById('contactComposeStatus');
+	var to = (form.getAttribute('data-contact-to') || 'autret.gabriel@gmail.com').trim();
+	var nameInput = document.getElementById('contactName');
+	var emailInput = document.getElementById('contactEmail');
+	var subjectInput = document.getElementById('contactSubject');
+	var phoneInput = document.getElementById('contactPhone');
+	var messageInput = document.getElementById('contactMessage');
+	var fields = [
+		{
+			key: 'fullName',
+			input: nameInput,
+			error: document.getElementById('contactNameError'),
+			validate: function(value) {
+				if (!value)
+					return 'Ton nom est requis.';
+				if (value.length < 2)
+					return 'Le nom doit contenir au moins 2 caracteres.';
+				return '';
+			}
+		},
+		{
+			key: 'email',
+			input: emailInput,
+			error: document.getElementById('contactEmailError'),
+			validate: function(value) {
+				if (!value)
+					return 'Ton email est requis.';
+				if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value))
+					return 'Entre une adresse email valide.';
+				return '';
+			}
+		},
+		{
+			key: 'subject',
+			input: subjectInput,
+			error: document.getElementById('contactSubjectError'),
+			validate: function(value) {
+				if (!value)
+					return 'Le sujet est requis.';
+				if (value.length < 3)
+					return 'Le sujet doit contenir au moins 3 caracteres.';
+				return '';
+			}
+		},
+		{
+			key: 'phone',
+			input: phoneInput,
+			error: document.getElementById('contactPhoneError'),
+			validate: function(value) {
+				if (!value)
+					return '';
+				if (!/^\+?[0-9][0-9\s().-]{5,19}$/.test(value))
+					return 'Telephone invalide (chiffres, espaces, +, (), ., -).';
+				return '';
+			}
+		},
+		{
+			key: 'message',
+			input: messageInput,
+			error: document.getElementById('contactMessageError'),
+			validate: function(value) {
+				if (!value)
+					return 'Le message est requis.';
+				if (value.length < 10)
+					return 'Le message doit contenir au moins 10 caracteres.';
+				return '';
+			}
+		}
+	];
+
+	var setStatus = function(text, isError) {
+		if (!status)
+			return;
+
+		status.textContent = text || '';
+		status.classList.toggle('is-error', !!isError);
+	};
+
+	var setFieldState = function(field, errorMessage) {
+		var wrapper = field.input ? field.input.closest('.field') : null;
+		var hasError = !!errorMessage;
+
+		if (wrapper)
+			wrapper.classList.toggle('has-error', hasError);
+
+		if (field.input) {
+			if (hasError)
+				field.input.setAttribute('aria-invalid', 'true');
+			else
+				field.input.removeAttribute('aria-invalid');
+		}
+
+		if (field.error)
+			field.error.textContent = errorMessage || '';
+	};
+
+	var validateField = function(field) {
+		if (!field.input)
+			return { isValid: false, value: '' };
+
+		var value = field.input.value.trim();
+		var errorMessage = field.validate(value);
+		setFieldState(field, errorMessage);
+
+		return {
+			isValid: !errorMessage,
+			value: value
+		};
+	};
+
+	var validateForm = function() {
+		var values = {};
+		var firstInvalidInput = null;
+		var isValid = true;
+
+		fields.forEach(function(field) {
+			var result = validateField(field);
+			values[field.key] = result.value;
+
+			if (!result.isValid) {
+				isValid = false;
+				if (!firstInvalidInput)
+					firstInvalidInput = field.input;
+			}
+		});
+
+		return {
+			isValid: isValid,
+			firstInvalidInput: firstInvalidInput,
+			values: values
+		};
+	};
+
+	var openInNewTab = function(url) {
+		var newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+
+		if (newWindow)
+			newWindow.opener = null;
+
+		return !!newWindow;
+	};
+
+	fields.forEach(function(field) {
+		if (!field.input)
+			return;
+
+		field.input.addEventListener('blur', function() {
+			validateField(field);
+		});
+
+		field.input.addEventListener('input', function() {
+			if (field.input.getAttribute('aria-invalid') === 'true')
+				validateField(field);
+		});
+	});
+
+	form.addEventListener('submit', function(event) {
+		event.preventDefault();
+		setStatus('', false);
+
+		var result = validateForm();
+		if (!result.isValid) {
+			setStatus('Merci de corriger les champs en rouge avant envoi.', true);
+			if (result.firstInvalidInput)
+				result.firstInvalidInput.focus();
+			return;
+		}
+
+		var subjectLine = '[Portfolio] ' + result.values.subject;
+		var lines = [
+			'Nom: ' + result.values.fullName,
+			'Email: ' + result.values.email
+		];
+
+		if (result.values.phone)
+			lines.push('Telephone: ' + result.values.phone);
+
+		lines.push('');
+		lines.push('Message:');
+		lines.push(result.values.message);
+
+		var bodyText = lines.join('\n');
+		var outlookUrl = 'https://outlook.office.com/mail/deeplink/compose?to='
+			+ encodeURIComponent(to)
+			+ '&subject=' + encodeURIComponent(subjectLine)
+			+ '&body=' + encodeURIComponent(bodyText);
+
+		if (openInNewTab(outlookUrl))
+			setStatus('Outlook a été ouvert dans un nouvel onglet.', false);
+		else
+			setStatus('Le navigateur a bloqué l\'ouverture du nouvel onglet.', true);
+	});
+})();
+
 (function($) {
 
 	var	$window = $(window),

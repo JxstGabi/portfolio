@@ -33,7 +33,6 @@
 										<li><a href="index.html">Accueil</a></li>
 										<li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
 										<li><a href="skills.html">Mes compétences</a></li>
-										<li><a href="#timeline">Timeline</a></li>
 										<li><a href="#footer">Mes contacts</a></li>
 									</ul>
 									<ul class="site-nav__mobile">
@@ -51,7 +50,6 @@
 							<li><a href="index.html">Accueil</a></li>
 							<li><a href="images/CV Gabriel Autret.pdf" target="_blank" rel="noopener noreferrer">Mon CV</a></li>
 							<li><a href="skills.html">Mes compétences</a></li>
-							<li><a href="#timeline">Timeline</a></li>
 							<li><a href="#footer">Mes contacts</a></li>
 						</ul>
 					</nav>
@@ -143,10 +141,35 @@
 							<section>
 								<h2>Contactez-moi</h2>
 								<p>Disponible pour échanger sur mes projets, un stage ou une alternance.</p>
-								<ul class="actions">
-									<li><a href="mailto:autret.gabriel@gmail.com" class="button primary">M'envoyer un email</a></li>
-									<li><a href="images/CV Gabriel Autret.pdf" class="button" target="_blank" rel="noopener noreferrer">Voir mon CV (PDF)</a></li>
-								</ul>
+								<form id="contactComposeForm" data-contact-to="autret.gabriel@gmail.com" action="#" method="post" novalidate>
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="contact-name" id="contactName" placeholder="Votre nom" required />
+											<p class="contact-field-error" id="contactNameError" aria-live="polite"></p>
+										</div>
+										<div class="field half">
+											<input type="email" name="contact-email" id="contactEmail" placeholder="Votre email" required />
+											<p class="contact-field-error" id="contactEmailError" aria-live="polite"></p>
+										</div>
+										<div class="field half">
+											<input type="text" name="contact-subject" id="contactSubject" placeholder="Sujet" required />
+											<p class="contact-field-error" id="contactSubjectError" aria-live="polite"></p>
+										</div>
+										<div class="field half">
+											<input type="text" name="contact-phone" id="contactPhone" placeholder="Telephone (optionnel)" />
+											<p class="contact-field-error" id="contactPhoneError" aria-live="polite"></p>
+										</div>
+										<div class="field">
+											<textarea name="contact-message" id="contactMessage" placeholder="Votre message" rows="5" required></textarea>
+											<p class="contact-field-error" id="contactMessageError" aria-live="polite"></p>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><button type="submit" class="primary">Envoyer via Outlook</button></li>
+										<li><a href="images/CV Gabriel Autret.pdf" class="button" target="_blank" rel="noopener noreferrer">Voir mon CV (PDF)</a></li>
+									</ul>
+									<p id="contactComposeStatus" class="contact-compose-status" aria-live="polite"></p>
+								</form>
 							</section>
 							<section>
 								<h2>Suivez-moi</h2>
